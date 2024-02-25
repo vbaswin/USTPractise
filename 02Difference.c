@@ -17,8 +17,6 @@ int prime(int n) {
 			return 0;
 	}
 
-	return 1;
-
 	return 1;	 // If no divisors are found, the number is prime
 }
 

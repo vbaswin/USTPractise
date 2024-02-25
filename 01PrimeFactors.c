@@ -1,42 +1,37 @@
 /*
-	This program first checks if a number is prime with the prime function.
-	Then, in the sum_of_prime_factors function, it checks for all numbers from 2 to
-	the given number if they are prime and a factor of the given number. If they are,
-	it adds them to the sum and divides the given number by the prime factor until it is
-	no longer divisible. Finally, it prints the sum of the prime factors.
+	sum of prime factors of given number
 */
-
-
-
 #include <stdio.h>
 
-int prime(int n) {
-	if (n <= 1) return 0;
-	if (n == 2) return 1;
+// Function to check if a number is prime
+int isPrime(int num) {
+	if (num <= 1) return 0;	   // Numbers less than or equal to 1 are not prime
+	if (num == 2) return 1;
 
-	for (int i = 2; i < n; ++i) {
-		if (n % i == 0)
+	// check if any numumber from 2 to n-1 is divisible by
+	// if numot then return 0
+	for (int i = 2; i < num; ++i) {
+		if (num % i == 0)
 			return 0;
 	}
 
-	return 1;
-}
-
-int sum_of_prime_factors(int n) {
-	int sum = 0;
-	for (int i = 2; i <= n; i++) {
-		while (prime(i) && n % i == 0) {
-			sum += i;
-			n = n / i;
-		}
-	}
-	return sum;
+	return 1;	 // If no divisors are found, the number is prime
 }
 
 int main() {
-	int num;
-	printf("Enter a number: ");
-	scanf("%d", &num);
-	printf("Sum of Prime Factors of %d is %d", num, sum_of_prime_factors(num));
+	int num = 315;	  // Input number
+	int sum = 0;
+
+	// Iterate over the numbers up to num
+	for (int i = 2; i <= num; i++) {
+		// Check if i is a prime factor of num
+		while (isPrime(i) && num % i == 0) {
+			sum += i;
+			num /= i;
+		}
+	}
+
+	printf("The sum of prime factors is %d\n", sum);	// Print the sum
+
 	return 0;
 }
